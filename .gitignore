@@ -6,3 +6,7 @@ bin/
 build/
 target/
 work/
+build.gradle
+gradlew
+gradlew.bat
+settings.gradle
