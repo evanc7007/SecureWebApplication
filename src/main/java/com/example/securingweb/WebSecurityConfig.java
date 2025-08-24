@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity https) throws Exception{
-        https.authorizeHttpRequests((requests)->requests.requestMatchers("/", "/home").permitAll().anyRequest().authenticated())
+        https.authorizeHttpRequests((requests)->requests.requestMatchers("/", "/home", "register").permitAll().anyRequest().authenticated())
             .formLogin((form)->form.loginPage("/login").permitAll()).logout((logout)->logout.permitAll());
 
         return https.build();
