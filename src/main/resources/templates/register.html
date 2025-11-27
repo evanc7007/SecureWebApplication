@@ -8,8 +8,34 @@
             <div><label for="username"> User Name: <input type="text" id="username" name="username"></label></div>
             <div><label for="password"> Password: <input type="password" id="password" name="password"></label></div>
             <div><label for="confirmPassword"> Confirm Password: <input type="password" id="confirmPassword" name="confirmPassword"></label></div>
-            <div><input type="submit" value="Register"/></div>
+            <div><input type="submit" id="submit" value="Register"/></div>
         </form>
         
     </body>
 </html>
+<script>
+    const submitButton = document.getElementById("submit");
+    submitButton.addEventListener('click', ()=>{
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const data = {
+            username,
+            password
+        }
+
+        if(password == confirmPassword){
+            const jsonData = JSON.stringify(data);
+            fetch('/register', {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: jsonData
+            })
+            .then(response =>{
+
+            })
+        }
+    })
+</script>

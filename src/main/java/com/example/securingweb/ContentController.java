@@ -17,5 +17,9 @@ public class ContentController {
         return "register";
     }
     
+    @GetMapping("/index")
+    public String home() {
+        return "index";
+    }
     
 }

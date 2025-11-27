@@ -30,7 +30,7 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity https) throws Exception{
         https.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests((requests)->requests.requestMatchers("/", "/home", "/register", "/css/**", "/js/**").permitAll().anyRequest().authenticated())
-            .formLogin((form)->form.loginPage("/login").permitAll()).logout((logout)->logout.permitAll());
+            .formLogin((form)->form.loginPage("/login").defaultSuccessUrl("/home",true).permitAll()).logout((logout)->logout.permitAll());
 
         return https.build();
     }
@@ -44,6 +44,7 @@ public class WebSecurityConfig {
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(appUserService);
+        provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
 
